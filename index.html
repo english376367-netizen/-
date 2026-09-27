@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TEST FOR UNIT 3 – Interactive Practice</title>
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:#f4f7fb;color:#172033;
+    font-family:Arial,Helvetica,sans-serif;line-height:1.55;
+  }
+  .container{max-width:1050px;margin:auto;padding:18px}
+  header{
+    background:linear-gradient(135deg,#2563eb,#7c3aed);
+    color:#fff;border-radius:18px;padding:24px 20px;margin-bottom:18px;
+    box-shadow:0 8px 25px rgba(37,99,235,.18)
+  }
+  h1{margin:0 0 8px;font-size:26px}
+  .subtitle{opacity:.95}
+  .scorebar{
+    position:sticky;top:0;z-index:10;background:#fff;border-radius:14px;
+    padding:12px 15px;margin:12px 0 18px;box-shadow:0 4px 18px rgba(0,0,0,.08);
+    display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap
+  }
+  .score{font-weight:700;color:#1d4ed8}
+  .progress{flex:1;min-width:180px;height:10px;background:#e5e7eb;border-radius:99px;overflow:hidden}
+  .progress span{display:block;height:100%;width:0;background:#22c55e;transition:.3s}
+  .section{
+    margin:22px 0 10px;padding:13px 16px;border-radius:12px;
+    background:#e0e7ff;color:#312e81;font-weight:700
+  }
+  .question{
+    background:#fff;border-radius:16px;padding:18px;margin:14px 0;
+    box-shadow:0 4px 16px rgba(15,23,42,.07)
+  }
+  .qtitle{font-weight:700;margin-bottom:12px}
+  .passage{
+    background:#f8fafc;border-left:5px solid #6366f1;padding:15px;
+    border-radius:8px;margin:12px 0;font-size:15px
+  }
+  .option{
+    display:block;margin:9px 0;padding:10px 12px;border:2px solid #e5e7eb;
+    border-radius:10px;cursor:pointer;transition:.15s;background:#fff
+  }
+  .option:hover{border-color:#93c5fd;background:#eff6ff}
+  .option input{margin-right:8px}
+  .correct{border-color:#22c55e!important;background:#ecfdf5!important}
+  .wrong{border-color:#ef4444!important;background:#fef2f2!important}
+  .unselected-correct{border-color:#22c55e!important;background:#ecfdf5!important}
+  button{
+    border:0;border-radius:10px;padding:10px 15px;font-weight:700;
+    cursor:pointer;font-size:15px
+  }
+  .check{background:#2563eb;color:#fff}
+  .check:hover{background:#1d4ed8}
+  .reset{background:#e5e7eb;color:#111827}
+  .feedback{display:none;margin-top:13px;padding:13px;border-radius:10px}
+  .feedback.show{display:block}
+  .feedback.correctfb{background:#ecfdf5;color:#166534;border:1px solid #86efac}
+  .feedback.wrongfb{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+  .answerline{font-weight:700;margin-bottom:6px}
+  .explanation{color:#075985;margin-top:7px}
+  .translation{color:#334155;margin-top:7px}
+  .footer{
+    margin:25px 0;text-align:center;color:#64748b;font-size:13px
+  }
+  .checkall{
+    background:#16a34a;color:#fff
+  }
+  .resetall{background:#475569;color:#fff}
+  .top-actions{display:flex;gap:8px;flex-wrap:wrap}
+  .note{
+    background:#fff7ed;border:1px solid #fed7aa;padding:12px 14px;
+    border-radius:10px;color:#9a3412;margin-bottom:16px
+  }
+  @media(max-width:650px){
+    .container{padding:10px}
+    header{padding:18px 15px}
+    h1{font-size:21px}
+    .question{padding:14px}
+    .option{font-size:14px}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <h1>TEST FOR UNIT 3 (FORM MỚI 2025 LỚP 12)</h1>
+  <div class="subtitle">Interactive Practice • Choose an answer, then press <b>Check</b> to see the Vietnamese explanation.</div>
+</header>
+
+<div class="note">
+  <b>Instructions:</b> Select A, B, C, or D. The answer and explanation are hidden until you check the question.
+</div>
+
+<div class="scorebar">
+  <div class="score" id="scoreText">Score: 0 / 28</div>
+  <div class="progress"><span id="progressFill"></span></div>
+  <div class="top-actions">
+    <button class="checkall" onclick="checkAll()">Check All</button>
+    <button class="resetall" onclick="resetAll()">Reset</button>
+  </div>
+</div>
+
+<div class="section">I. Pronunciation</div>
+
+<div class="question" data-q="1" data-answer="A">
+<div class="qtitle">Question 1. Choose the word whose underlined part differs from the other three in pronunciation.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q1" value="A"> A. biodiversity</label>
+<label class="option"><input type="radio" name="q1" value="B"> B. habitat</label>
+<label class="option"><input type="radio" name="q1" value="C"> C. footprint</label>
+<label class="option"><input type="radio" name="q1" value="D"> D. landfill</label>
+</div>
+<button class="check" onclick="checkQuestion(1)">Check</button>
+<div class="feedback" id="fb1"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="question" data-q="2" data-answer="D">
+<div class="qtitle">Question 2. Choose the word whose underlined part differs from the other three in pronunciation.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q2" value="A"> A. sustainability</label>
+<label class="option"><input type="radio" name="q2" value="B"> B. solidarity</label>
+<label class="option"><input type="radio" name="q2" value="C"> C. soot</label>
+<label class="option"><input type="radio" name="q2" value="D"> D. cuisine</label>
+</div>
+<button class="check" onclick="checkQuestion(2)">Check</button>
+<div class="feedback" id="fb2"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="section">II. Stress</div>
+
+<div class="question" data-q="3" data-answer="C">
+<div class="qtitle">Question 3. Choose the word that differs from the other three in the position of primary stress.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q3" value="A"> A. embrace</label>
+<label class="option"><input type="radio" name="q3" value="B"> B. absorb</label>
+<label class="option"><input type="radio" name="q3" value="C"> C. compost</label>
+<label class="option"><input type="radio" name="q3" value="D"> D. confine</label>
+</div>
+<button class="check" onclick="checkQuestion(3)">Check</button>
+<div class="feedback" id="fb3"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="question" data-q="4" data-answer="A">
+<div class="qtitle">Question 4. Choose the word that differs from the other three in the position of primary stress.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q4" value="A"> A. festival</label>
+<label class="option"><input type="radio" name="q4" value="B"> B. tradition</label>
+<label class="option"><input type="radio" name="q4" value="C"> C. adoption</label>
+<label class="option"><input type="radio" name="q4" value="D"> D. promotion</label>
+</div>
+<button class="check" onclick="checkQuestion(4)">Check</button>
+<div class="feedback" id="fb4"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="section">III. Grammar and Vocabulary</div>
+
+<div class="question" data-q="5" data-answer="B">
+<div class="qtitle">Question 5. Ecotourism ________ tourists to develop eco-friendly habits when travelling.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q5" value="A"> A. encouraged</label>
+<label class="option"><input type="radio" name="q5" value="B"> B. encourages</label>
+<label class="option"><input type="radio" name="q5" value="C"> C. has encouraged</label>
+<label class="option"><input type="radio" name="q5" value="D"> D. was encouraging</label>
+</div>
+<button class="check" onclick="checkQuestion(5)">Check</button>
+<div class="feedback" id="fb5"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="question" data-q="6" data-answer="C">
+<div class="qtitle">Question 6. There are many volunteers here to help clean up the beach, __________?</div>
+<div class="options">
+<label class="option"><input type="radio" name="q6" value="A"> A. weren’t there</label>
+<label class="option"><input type="radio" name="q6" value="B"> B. were there</label>
+<label class="option"><input type="radio" name="q6" value="C"> C. aren’t there</label>
+<label class="option"><input type="radio" name="q6" value="D"> D. are there</label>
+</div>
+<button class="check" onclick="checkQuestion(6)">Check</button>
+<div class="feedback" id="fb6"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="question" data-q="7" data-answer="A">
+<div class="qtitle">Question 7. Living in the countryside is _______ the city because the air in the city is polluted.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q7" value="A"> A. healthier than</label>
+<label class="option"><input type="radio" name="q7" value="B"> B. more healthy than</label>
+<label class="option"><input type="radio" name="q7" value="C"> C. healthier as</label>
+<label class="option"><input type="radio" name="q7" value="D"> D. as healthier</label>
+</div>
+<button class="check" onclick="checkQuestion(7)">Check</button>
+<div class="feedback" id="fb7"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="question" data-q="8" data-answer="D">
+<div class="qtitle">Question 8. This is the easiest thing to do, but we also need _______ our classmates' behaviour so that we can develop eco-friendly habits in our class.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q8" value="A"> A. to changing</label>
+<label class="option"><input type="radio" name="q8" value="B"> B. to be changed</label>
+<label class="option"><input type="radio" name="q8" value="C"> C. changing</label>
+<label class="option"><input type="radio" name="q8" value="D"> D. to change</label>
+</div>
+<button class="check" onclick="checkQuestion(8)">Check</button>
+<div class="feedback" id="fb8"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="question" data-q="9" data-answer="B">
+<div class="qtitle">Question 9. The future of our planet _________ how we deal with climate change.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q9" value="A"> A. look after</label>
+<label class="option"><input type="radio" name="q9" value="B"> B. depends on</label>
+<label class="option"><input type="radio" name="q9" value="C"> C. care about</label>
+<label class="option"><input type="radio" name="q9" value="D"> D. work out</label>
+</div>
+<button class="check" onclick="checkQuestion(9)">Check</button>
+<div class="feedback" id="fb9"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="section">IV. Advertisement / Announcement</div>
+
+<div class="passage"><b>ADVERTISEMENT — A hiring event for Sedwick Electronics</b><br>
+March 2, 22 Myer Street, Hanover, PA 17331; 10 a.m.–5 p.m. We need to fill a lot of roles because Sedwick Electronics is establishing (10)________ new manufacturing facility in Hanover, Pennsylvania. We provide our staff with fantastic benefits and a lovely work atmosphere. Attend the event to talk with recruiters, learn (11)_______ available openings, and hear firsthand accounts from Lancaster facility employees about their (12)_________. There is no need to RSVP. Take copies of your resume with you.</div>
+
+<div class="question" data-q="10" data-answer="C">
+<div class="qtitle">Question 10.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q10" value="A"> A. 0</label>
+<label class="option"><input type="radio" name="q10" value="B"> B. an</label>
+<label class="option"><input type="radio" name="q10" value="C"> C. a</label>
+<label class="option"><input type="radio" name="q10" value="D"> D. the</label>
+</div>
+<button class="check" onclick="checkQuestion(10)">Check</button>
+<div class="feedback" id="fb10"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="question" data-q="11" data-answer="D">
+<div class="qtitle">Question 11.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q11" value="A"> A. at</label>
+<label class="option"><input type="radio" name="q11" value="B"> B. on</label>
+<label class="option"><input type="radio" name="q11" value="C"> C. for</label>
+<label class="option"><input type="radio" name="q11" value="D"> D. about</label>
+</div>
+<button class="check" onclick="checkQuestion(11)">Check</button>
+<div class="feedback" id="fb11"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="question" data-q="12" data-answer="A">
+<div class="qtitle">Question 12.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q12" value="A"> A. experiences</label>
+<label class="option"><input type="radio" name="q12" value="B"> B. experience</label>
+<label class="option"><input type="radio" name="q12" value="C"> C. experienced</label>
+<label class="option"><input type="radio" name="q12" value="D"> D. inexperienced</label>
+</div>
+<button class="check" onclick="checkQuestion(12)">Check</button>
+<div class="feedback" id="fb12"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="passage"><b>ANNOUNCEMENT — Catherine Bernier</b><br>
+17 September 1933 – 18 June 2017. Passed away peacefully in her sleep on Sunday, June 18, 2017, at the age of 83. Her daughter Sharon, sisters Angela and Myra, grandsons Kyle and Carys, son-in-law Martin, all of her sisters and brothers-in-law, nieces, and nephews will all mourn her deeply. On Friday, July 7, 2017, at 11 a.m., there (13)________ a funeral ceremony at St. Augustine Church, Beckenham Hill Road, SE6 3PU, (14)_________ a burial at Hither Green Cemetery, Verdant Lane, SE6 ITP. Welcome to all who (15)________ my mother.</div>
+
+<div class="question" data-q="13" data-answer="A">
+<div class="qtitle">Question 13.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q13" value="A"> A. will be</label>
+<label class="option"><input type="radio" name="q13" value="B"> B. was</label>
+<label class="option"><input type="radio" name="q13" value="C"> C. is</label>
+<label class="option"><input type="radio" name="q13" value="D"> D. would be</label>
+</div>
+<button class="check" onclick="checkQuestion(13)">Check</button>
+<div class="feedback" id="fb13"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="question" data-q="14" data-answer="D">
+<div class="qtitle">Question 14.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q14" value="A"> A. if</label>
+<label class="option"><input type="radio" name="q14" value="B"> B. but</label>
+<label class="option"><input type="radio" name="q14" value="C"> C. or</label>
+<label class="option"><input type="radio" name="q14" value="D"> D. and</label>
+</div>
+<button class="check" onclick="checkQuestion(14)">Check</button>
+<div class="feedback" id="fb14"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="question" data-q="15" data-answer="B">
+<div class="qtitle">Question 15.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q15" value="A"> A. heard</label>
+<label class="option"><input type="radio" name="q15" value="B"> B. knew</label>
+<label class="option"><input type="radio" name="q15" value="C"> C. saw</label>
+<label class="option"><input type="radio" name="q15" value="D"> D. talked</label>
+</div>
+<button class="check" onclick="checkQuestion(15)">Check</button>
+<div class="feedback" id="fb15"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="section">V. Sentence Arrangement</div>
+
+<div class="question" data-q="16" data-answer="A">
+<div class="qtitle">Question 16. Choose the correct arrangement.</div>
+<div class="passage">
+d. Oh, what a meaningful and humane program. I want to participate, can I?<br>
+c. We are planning a green life program where we live.<br>
+b. Oh. Can you tell more about this program?<br>
+e. Very ready to welcome you. Thank you for your support and joining us.<br>
+a. We will launch a campaign to clean up the neighborhood, collect unused personal items to give to poor or street children, then we will deduct funds from each person to pay one day's salary to raise funds for the needy.
+</div>
+<div class="options">
+<label class="option"><input type="radio" name="q16" value="A"> A. c-b-a-d-e</label>
+<label class="option"><input type="radio" name="q16" value="B"> B. c-d-b-a-e</label>
+<label class="option"><input type="radio" name="q16" value="C"> C. d-b-a-c-e</label>
+<label class="option"><input type="radio" name="q16" value="D"> D. c-d-a-b-e</label>
+</div>
+<button class="check" onclick="checkQuestion(16)">Check</button>
+<div class="feedback" id="fb16"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="question" data-q="17" data-answer="D">
+<div class="qtitle">Question 17. Choose the correct arrangement.</div>
+<div class="passage">
+e. So what have you done so far, Mai?<br>
+b. Welcome to our talk show 'Green Living'. Today, we will hear from two secondary students, David and Mai, who will talk about the Go Green initiative at their school in Cam Ranh. David, can you tell us how you came up with the idea?<br>
+f. Great! What exactly are these activities?<br>
+c. On Mondays, during the 'green ten minutes' students bring old and broken electronics like second-hand mobile phones and MP3 players for recycling. At the end of the month, we intend to take the items to one of the electronic recycling centres in the city.<br>
+d. Well, in our science and environmental studies classes, we realised that the way we live can strongly affect our environment. Since we are all passionate about environmental issues, we decided that we should do something to help our school to go green and save our planet.<br>
+a. Two months ago, we launched our 'ten-minute a day' mini project. It involves sparing ten minutes in our break time for specific green activities. We wanted to start with something small and involve as many students as possible.
+</div>
+<div class="options">
+<label class="option"><input type="radio" name="q17" value="A"> A. b-e-d-a-c-f</label>
+<label class="option"><input type="radio" name="q17" value="B"> B. e-b-d-c-a-f</label>
+<label class="option"><input type="radio" name="q17" value="C"> C. f-d-a-e-b-c</label>
+<label class="option"><input type="radio" name="q17" value="D"> D. b-d-e-a-f-c</label>
+</div>
+<button class="check" onclick="checkQuestion(17)">Check</button>
+<div class="feedback" id="fb17"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="section">VI. Cloze Passage – Environmental Protection Campaign</div>
+
+<div class="passage">
+Speaking at the launching event, chairman of the Việt Nam Youth Federation in HCM City Ngô Minh Hải said the campaign (18)____________, and encourage them to assume pioneering roles in protecting the environment and (19)____________through small actions.<br><br>
+This year’s campaign is associated with the implementation of the city’s Youth Project "Sài Gòn River – The river in my city." “It focuses (20)________________, and promoting a green-living lifestyle,” he said.<br><br>
+Youth union members, including university students, local youths, soldiers and officers of the armed forces, (21)_________Lăng 2 Canal in Bình Thạnh District, and a section of the North-South Railway running through Gò Vấp and Bình Thạnh districts, among other activities. The campaign also (22)_________individuals, organisations and communities to join in collecting, treating and recycling garbage, especially e-waste and plastic waste; promoting waste classification at source; reducing the use of single-use plastic products; and planting more trees.<br><br>
+After the campaign launched, youth union members started (23)_____________ and residential areas.
+</div>
+
+<div class="question" data-q="18" data-answer="B">
+<div class="qtitle">Question 18.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q18" value="A"> A. aims to be promoted the role of youths</label>
+<label class="option"><input type="radio" name="q18" value="B"> B. aims to promote the role of youths</label>
+<label class="option"><input type="radio" name="q18" value="C"> C. aims to have promoted the role of youths</label>
+<label class="option"><input type="radio" name="q18" value="D"> D. aims to promoting the role of youths</label>
+</div>
+<button class="check" onclick="checkQuestion(18)">Check</button>
+<div class="feedback" id="fb18"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="question" data-q="19" data-answer="D">
+<div class="qtitle">Question 19.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q19" value="A"> A. to fight climate change</label>
+<label class="option"><input type="radio" name="q19" value="B"> B. to fighting climate change</label>
+<label class="option"><input type="radio" name="q19" value="C"> C. on fighting climate change</label>
+<label class="option"><input type="radio" name="q19" value="D"> D. fighting climate change</label>
+</div>
+<button class="check" onclick="checkQuestion(19)">Check</button>
+<div class="feedback" id="fb19"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="question" data-q="20" data-answer="B">
+<div class="qtitle">Question 20.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q20" value="A"> A. at strengthening environmental protection activities</label>
+<label class="option"><input type="radio" name="q20" value="B"> B. on strengthening environmental protection activities</label>
+<label class="option"><input type="radio" name="q20" value="C"> C. from strengthening environmental protection activities</label>
+<label class="option"><input type="radio" name="q20" value="D"> D. in strengthening environmental protection activities</label>
+</div>
+<button class="check" onclick="checkQuestion(20)">Check</button>
+<div class="feedback" id="fb20"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="question" data-q="21" data-answer="C">
+<div class="qtitle">Question 21.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q21" value="A"> A. cleaned up</label>
+<label class="option"><input type="radio" name="q21" value="B"> B. clean up</label>
+<label class="option"><input type="radio" name="q21" value="C"> C. will clean up</label>
+<label class="option"><input type="radio" name="q21" value="D"> D. will be cleaned up</label>
+</div>
+<button class="check" onclick="checkQuestion(21)">Check</button>
+<div class="feedback" id="fb21"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="question" data-q="22" data-answer="D">
+<div class="qtitle">Question 22.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q22" value="A"> A. calls at</label>
+<label class="option"><input type="radio" name="q22" value="B"> B. calls in</label>
+<label class="option"><input type="radio" name="q22" value="C"> C. calls for</label>
+<label class="option"><input type="radio" name="q22" value="D"> D. calls on</label>
+</div>
+<button class="check" onclick="checkQuestion(22)">Check</button>
+<div class="feedback" id="fb22"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="question" data-q="23" data-answer="A">
+<div class="qtitle">Question 23.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q23" value="A"> A. cleaning up polluted canals</label>
+<label class="option"><input type="radio" name="q23" value="B"> B. clean up polluted canals</label>
+<label class="option"><input type="radio" name="q23" value="C"> C. to cleaning up polluted canals</label>
+<label class="option"><input type="radio" name="q23" value="D"> D. cleaned up polluted canals</label>
+</div>
+<button class="check" onclick="checkQuestion(23)">Check</button>
+<div class="feedback" id="fb23"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="section">VII. Reading – Mental and Physical Health</div>
+
+<div class="passage"><b>MENTAL AND PHYSICAL HEALTH</b><br><br>
+Sustainable cities are inherently more walkable due to the environmental and community-centric principles at their core. A recent survey showed that of those who identify their community as walkable, 57% described their quality of life as “high.” People who (24)________in walkable cities also get more daily exercise and therefore experience a higher degree of cardiovascular health.<br><br>
+Increased walkability requires (25)________vehicles on the road, which means less pollution, which means cleaner, more breathable air.<br><br>
+By contrast, living in today’s poorly designed cities is associated with a nearly 40% increase in mood disorders and a more than 20% increase in anxiety disorders, (26)_______ doubles the risk of schizophrenia and substance abuse. (27)________, a growing body of science has revealed that access to nature can transform this negative dynamic into a positive one. Recent studies have shown that people who spend as little as two hours in (28)________ a week report higher levels of wellbeing compared to those who don’t. Sustainable cities can solve for this pressing need by opening up and permeating the urban environment with the natural one in the form of waterfronts, parks, trails, and untouched swaths of greenery.
+</div>
+
+<div class="question" data-q="24" data-answer="D">
+<div class="qtitle">Question 24.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q24" value="A"> A. share</label>
+<label class="option"><input type="radio" name="q24" value="B"> B. hear</label>
+<label class="option"><input type="radio" name="q24" value="C"> C. visit</label>
+<label class="option"><input type="radio" name="q24" value="D"> D. live</label>
+</div>
+<button class="check" onclick="checkQuestion(24)">Check</button>
+<div class="feedback" id="fb24"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="question" data-q="25" data-answer="A">
+<div class="qtitle">Question 25.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q25" value="A"> A. fewer</label>
+<label class="option"><input type="radio" name="q25" value="B"> B. little</label>
+<label class="option"><input type="radio" name="q25" value="C"> C. less</label>
+<label class="option"><input type="radio" name="q25" value="D"> D. many</label>
+</div>
+<button class="check" onclick="checkQuestion(25)">Check</button>
+<div class="feedback" id="fb25"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="question" data-q="26" data-answer="D">
+<div class="qtitle">Question 26.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q26" value="A"> A. where</label>
+<label class="option"><input type="radio" name="q26" value="B"> B. who</label>
+<label class="option"><input type="radio" name="q26" value="C"> C. that</label>
+<label class="option"><input type="radio" name="q26" value="D"> D. which</label>
+</div>
+<button class="check" onclick="checkQuestion(26)">Check</button>
+<div class="feedback" id="fb26"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="question" data-q="27" data-answer="B">
+<div class="qtitle">Question 27.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q27" value="A"> A. Therefore</label>
+<label class="option"><input type="radio" name="q27" value="B"> B. However</label>
+<label class="option"><input type="radio" name="q27" value="C"> C. Because</label>
+<label class="option"><input type="radio" name="q27" value="D"> D. Although</label>
+</div>
+<button class="check" onclick="checkQuestion(27)">Check</button>
+<div class="feedback" id="fb27"><div class="answerline"></div><div class="explanation"></div></div>
+</div>
+
+<div class="question" data-q="28" data-answer="A">
+<div class="qtitle">Question 28.</div>
+<div class="options">
+<label class="option"><input type="radio" name="q28" value="A"> A. nature</label>
+<label class="option"><input type="radio" name="q28" value="B"> B. park</label>
+<label class="option"><input type="radio" name="q28" value="C"> C. center city</label>
+<label class="option"><input type="radio" name="q28" value="D"> D. cannal</label>
+</div>
+<button class="check" onclick="checkQuestion(28)">Check</button>
+<div class="feedback" id="fb28"><div class="answerline"></div><div class="explanation"></div><div class="translation"></div></div>
+</div>
+
+<div class="footer">All answer keys and Vietnamese explanations are based on the uploaded document.</div>
+</div>
+
+<script>
+const explanations = {
+1:{text:"Đáp án A. biodiversity có phần phát âm /ai/ theo đáp án cung cấp; các đáp án còn lại được ghi là phát âm /i/."},
+2:{text:"Đáp án D. cuisine được ghi là có âm /z/, trong khi các đáp án còn lại được ghi là /s/."},
+3:{text:"Đáp án C. compost là động từ và theo tài liệu nhấn âm 1; embrace, absorb và confine nhấn âm 2."},
+4:{text:"Đáp án A. festival nhấn âm 1; tradition, adoption và promotion nhấn âm 2."},
+5:{text:"Đáp án B. Dùng thì hiện tại đơn để diễn tả sự thật ở hiện tại: “Ecotourism encourages tourists...”." , trans:"Tạm dịch: Du lịch sinh thái khuyến khích du khách phát triển thói quen thân thiện với môi trường khi đi du lịch."},
+6:{text:"Đáp án C. Với mệnh đề “There are many volunteers...”, câu hỏi đuôi dùng “aren’t there?”." , trans:"Tạm dịch: Ở đây có rất nhiều tình nguyện viên giúp dọn dẹp bãi biển phải không?"},
+7:{text:"Đáp án A. Cấu trúc so sánh hơn: S + be + tính từ ngắn + -er + than. “healthy” được dùng ở dạng so sánh hơn là “healthier”." , trans:"Tạm dịch: Sống ở nông thôn tốt cho sức khỏe hơn thành phố vì không khí ở thành phố bị ô nhiễm."},
+8:{text:"Đáp án D. Cấu trúc: S (người) + need + to V. Vì vậy dùng “need to change”." , trans:"Tạm dịch: Đây là điều dễ làm nhất nhưng chúng ta cũng cần thay đổi hành vi của các bạn trong lớp để hình thành thói quen thân thiện với môi trường trong lớp."},
+9:{text:"Đáp án B. “depend on” nghĩa là “phụ thuộc vào”. Các cụm còn lại: look after = chăm sóc; care about = quan tâm đến; work out = tập thể dục/giải quyết tùy ngữ cảnh." , trans:"Tạm dịch: Tương lai của hành tinh chúng ta phụ thuộc vào cách chúng ta đối phó với biến đổi khí hậu."},
+10:{text:"Đáp án C. “facility” là danh từ số ít và trong câu đang giới thiệu một cơ sở sản xuất mới nên dùng mạo từ “a”: “a new manufacturing facility”."},
+11:{text:"Đáp án D. Cụm “learn about” có nghĩa là “biết/tìm hiểu về”."},
+12:{text:"Đáp án A. Sau “their” cần danh từ; “experiences” là danh từ số nhiều phù hợp với ý nói về những trải nghiệm của các nhân viên."},
+13:{text:"Đáp án A. Sự kiện tang lễ được nói đến như một hành động diễn ra trong tương lai so với thời điểm thông báo, nên dùng “will be”."},
+14:{text:"Đáp án D. “and” dùng để nối hai sự kiện: một lễ tang và một lễ an táng."},
+15:{text:"Đáp án B. “knew” có nghĩa là “biết”, phù hợp với “Welcome to all who knew my mother.”"},
+16:{text:"Đáp án A. Trình tự hợp lý: c giới thiệu chương trình → b hỏi thêm → a nêu các hoạt động → d bày tỏ mong muốn tham gia → e chào mừng và cảm ơn."},
+17:{text:"Đáp án D. Trình tự hợp lý: b mở đầu chương trình và hỏi ý tưởng → d giải thích nguồn gốc ý tưởng → e hỏi Mai đã làm gì → a nói về dự án mười phút → f hỏi hoạt động cụ thể → c mô tả hoạt động tái chế."},
+18:{text:"Đáp án B. Cấu trúc “aim to + V” diễn tả mục đích, nên dùng “aims to promote”." , trans:"Tạm dịch: Chiến dịch nhằm phát huy vai trò của thanh niên."},
+19:{text:"Đáp án D. Sau giới từ “in” dùng V-ing; cấu trúc song song là “in protecting ... and fighting ...”." , trans:"Tạm dịch: khuyến khích họ đảm nhận vai trò tiên phong trong việc bảo vệ môi trường và chống biến đổi khí hậu bằng những hành động nhỏ."},
+20:{text:"Đáp án B. Cụm cố định “focus on + V-ing”, nên dùng “focuses on strengthening...”." , trans:"Tạm dịch: Ông nói: “Nó tập trung vào việc tăng cường các hoạt động bảo vệ môi trường và thúc đẩy lối sống xanh.”"},
+21:{text:"Đáp án C. Theo đáp án cung cấp, hành động sẽ diễn ra ở tương lai nên dùng “will clean up”." , trans:"Tạm dịch: Đoàn viên thanh niên gồm sinh viên đại học, thanh niên địa phương, quân nhân và cán bộ lực lượng vũ trang sẽ làm sạch kênh Lăng 2, quận Bình Thạnh."},
+22:{text:"Đáp án D. Theo tài liệu: call at = vào bến tàu/cảng; call in = mời ai đến để làm việc gì; call for = đòi hỏi/yêu cầu; call on = kêu gọi. Vì vậy chọn “calls on”." , trans:"Tạm dịch: Chiến dịch cũng kêu gọi các cá nhân, tổ chức, cộng đồng cùng tham gia thu gom, xử lý, tái chế rác thải."},
+23:{text:"Đáp án A. Cấu trúc “start + V-ing” dùng để nói về việc bắt đầu một hoạt động; vì vậy dùng “started cleaning up...”." , trans:"Tạm dịch: Sau khi phát động chiến dịch, các đoàn viên thanh niên đã bắt đầu dọn dẹp kênh rạch và khu dân cư bị ô nhiễm."},
+24:{text:"Đáp án D. “live in walkable cities” nghĩa là “sống ở các thành phố có thể đi bộ”. Các lựa chọn share, hear, visit không phù hợp nghĩa của câu." , trans:"Tạm dịch: Những người sống ở các thành phố có thể đi bộ cũng tập thể dục hàng ngày nhiều hơn và do đó có sức khỏe tim mạch tốt hơn."},
+25:{text:"Đáp án A. “vehicles” là danh từ đếm được số nhiều, nên dùng “fewer” để chỉ số lượng ít hơn." , trans:"Tạm dịch: Khả năng đi bộ tăng lên đòi hỏi ít phương tiện hơn trên đường, đồng nghĩa với việc ít ô nhiễm hơn, đồng nghĩa với việc không khí sạch hơn, dễ thở hơn."},
+26:{text:"Đáp án D. “which” dùng để thay thế cho danh từ/cụm danh từ phía trước và nối mệnh đề bổ sung thông tin." , trans:"Tạm dịch: và rối loạn lo âu tăng hơn 20%, làm tăng gấp đôi nguy cơ mắc bệnh tâm thần phân liệt và lạm dụng chất gây nghiện."},
+27:{text:"Đáp án B. “However” thể hiện sự tương phản giữa tác động tiêu cực của các thành phố được thiết kế kém và thông tin tích cực về việc tiếp cận thiên nhiên."},
+28:{text:"Đáp án A. “spend ... hours in nature” là cách kết hợp phù hợp trong câu; nature = thiên nhiên." , trans:"Tạm dịch: Các nghiên cứu gần đây đã chỉ ra rằng những người dành ít nhất hai giờ hòa mình vào thiên nhiên mỗi tuần cho thấy mức độ hạnh phúc cao hơn so với những người không dành."}
+};
+
+const total=28;
+const checked={};
+
+function getQuestion(n){return document.querySelector('.question[data-q="'+n+'"]');}
+
+function checkQuestion(n){
+  const q=getQuestion(n);
+  const selected=q.querySelector('input:checked');
+  const fb=document.getElementById('fb'+n);
+  const ans=q.dataset.answer;
+  const opts=q.querySelectorAll('.option');
+  opts.forEach(o=>o.classList.remove('correct','wrong','unselected-correct'));
+  if(!selected){
+    fb.className='feedback show wrongfb';
+    fb.querySelector('.answerline').textContent='Please select an answer first.';
+    fb.querySelector('.explanation').textContent='';
+    const trans=fb.querySelector('.translation'); if(trans) trans.textContent='';
+    return;
+  }
+  checked[n]=true;
+  const correct=selected.value===ans;
+  opts.forEach(o=>{
+    const input=o.querySelector('input');
+    if(input.value===ans){
+      if(correct) o.classList.add('correct'); else o.classList.add('unselected-correct');
+    }
+    if(input===selected && !correct) o.classList.add('wrong');
+  });
+  fb.className='feedback show '+(correct?'correctfb':'wrongfb');
+  fb.querySelector('.answerline').textContent=(correct?'✓ Correct! ':'✗ Incorrect. ')+'Answer: '+ans;
+  fb.querySelector('.explanation').textContent=explanations[n].text;
+  const trans=fb.querySelector('.translation');
+  if(trans) trans.textContent=explanations[n].trans||'';
+  updateScore();
+}
+
+function updateScore(){
+  let score=0;
+  Object.keys(checked).forEach(n=>{
+    const q=getQuestion(n);
+    const selected=q.querySelector('input:checked');
+    if(selected && selected.value===q.dataset.answer) score++;
+  });
+  document.getElementById('scoreText').textContent='Score: '+score+' / '+total;
+  document.getElementById('progressFill').style.width=(score/total*100)+'%';
+}
+
+function checkAll(){
+  for(let i=1;i<=total;i++) checkQuestion(i);
+  const firstUnchecked=document.querySelector('.question input:not(:checked)');
+  if(firstUnchecked) firstUnchecked.closest('.question').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function resetAll(){
+  for(let i=1;i<=total;i++){
+    const q=getQuestion(i);
+    q.querySelectorAll('input').forEach(x=>x.checked=false);
+    q.querySelectorAll('.option').forEach(o=>o.classList.remove('correct','wrong','unselected-correct'));
+    const fb=document.getElementById('fb'+i);
+    fb.className='feedback';
+    fb.querySelector('.answerline').textContent='';
+    fb.querySelector('.explanation').textContent='';
+    const trans=fb.querySelector('.translation'); if(trans) trans.textContent='';
+  }
+  for(const k in checked) delete checked[k];
+  updateScore();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
